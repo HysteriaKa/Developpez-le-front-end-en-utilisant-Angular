@@ -1,28 +1,2 @@
 <h1 class="center">Olympic games app</h1>
-<div class="container">
-  <hr />
-  <!-- <p>{{ (olympics$ | async)?.length }} data loaded</p> -->
-
-  <!-- <p>{{medalsByCountry .length}}</p> -->
-  <div class="center">
-    <h3 class=" waves-effect waves-light btn">Medals per Country</h3>
-  </div>
-  <div class="row">
-    <div class="col s3 offset-s3">
-      <div class="center border">
-        <p> Number of Jo's </p>
-        <p class="text-bold">3</p>
-      </div>
-    </div>
-    <div class="col s3 offset s-3">
-      <div class="center border">
-        <p> Number of Countries </p>
-        <p class="text-bold">{{ (countrys)?.length }} </p>
-      </div>
-    </div>
-  </div>
-
-  <ngx-charts-pie-chart [results]="surveyData" [legend]="true" [legendTitle]="'Medals'" [view]="[1000,300]"
-    [labels]="true">
-  </ngx-charts-pie-chart>
-</div>
+<app-pie-chat></app-pie-chat>
