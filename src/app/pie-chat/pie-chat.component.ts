@@ -47,7 +47,7 @@ export class PieChatComponent implements OnInit {
 					'value': this.sumByCountry[i],
 				}
 			});
-
+console.log(this.surveyData);
 		})
 	}
 
@@ -59,18 +59,6 @@ onPieSliceSelect(event:any){
 		}
 	})
 
-
-  // Here is the interesting part
-  // this.router.navigate(['/details/',id], {queryParams: {myGetParam: event.name}});
-
-  // Or something like that
-  // if (event.name === 'smthing1') {
-  //   this.router.navigate(['/myRouteInAppRouting'], {queryParams: {myGetParam: 'running'});
-  // } else if (event.name === 'smthing2') {
-  //   ...
-  // }
 }
-	goToCountry(id:number): void {
 
-	}
 }
