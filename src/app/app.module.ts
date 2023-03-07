@@ -3,13 +3,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PieChatComponent } from './pie-chat/pie-chat.component';
+import { SingleBarChartComponent } from './single-bar-chart/single-bar-chart.component';
+
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, PieChatComponent, SingleBarChartComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule,BrowserAnimationsModule,
     NgxChartsModule],
   providers: [],
