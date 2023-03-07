@@ -16,10 +16,12 @@ export class SingleBarChartComponent implements OnInit {
   public resSafe: any;
   public participations: Participation[] | undefined;
   public datas: any[];
-  public years:number[]=[];
-  public series: any[];
-public dataSet: any[];
-  view: any[] = [600, 400];
+  public years: number[] = [];
+  public dataSet: any[];
+  public sum: number = 0;
+  public nbrAthletes: number = 0;
+  public view:any=[];
+
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -27,8 +29,9 @@ public dataSet: any[];
   showXAxisLabel = true;
   xAxisLabel = 'Country';
   showYAxisLabel = true;
-  yAxisLabel = 'Sales';
+  yAxisLabel = 'Medals';
   timeline = true;
+  autoCenter=true;
   constructor(private olympicService: OlympicService,
     private route: ActivatedRoute,
     private router: Router,) { }
@@ -44,67 +47,40 @@ public dataSet: any[];
         this.olympic = this.resSafe[nbrId];
         if (this.olympic) {
           this.participations = this.olympic['participations'];
-          // console.log(this.participations);
-          this.years = this.participations.map((an)=>an.year);
-          const nbrMedals =this.participations.map((nbr)=>nbr.medalsCount);
+          console.log(this.participations);
+          this.years = this.participations.map((an) => an.year);
+          const nbrMedals = this.participations.map((nbr) => nbr.medalsCount);
+          const athletes = this.participations.map((nbr) => nbr.athleteCount);
 
+          this.sum = this.arraySum(nbrMedals);
+          this.nbrAthletes = this.arraySum(athletes);
           this.datas = this.years.map((year: number, i: number) => {
             return {
-              'name':this. years[i],
+              'name': this.years[i],
               'value': nbrMedals[i],
             }
           });
-this.dataSet = this.datas.map((value)=>{
-  if (this.olympic) {
-    return {
-
-      "name":this.olympic['country'],
-      "series":this.datas
-    }
-  }return this.dataSet;
-
-})
-// this.series.push(this.datas);
-          // console.log(this.years,nbrMedals,this.datas);
-// for (let i = 0; i <this. years.length; i++) {
-//   const element = {name :this. years[i],value: nbrMedals[i]};
-//   this.datas.push(element);
-// }
-// console.log(this.datas);
+          if (this.olympic) {
+            this.dataSet = [{ "name": this.olympic['country'], "series": this.datas }];
+          }
         }
       })
     }
 
   }
-  // dataSet = [
-  //   {
-  //     "name": "Germany",
-  //     "series": [
-  //       {
-  //         "name": "2010",
-  //         "value": 7300000
-  //       },
-  //       {
-  //         "name": "2011",
-  //         "value": 8940000
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "USA",
-  //     "series": [
-  //       {
-  //         "name": "2010",
-  //         "value": 7870000
-  //       },
-  //       {
-  //         "name": "2011",
-  //         "value": 8270000
-  //       }
-  //     ]
-  //   }
-  // ];
 
-
+  arraySum(array: any): number {
+    let sum = 0;
+    for (let i = 0; i < array.length; i++) {
+      sum += array[i];
+    }
+    return sum;
+  }
+  goBack() {
+    this.router.navigate(['']);
+  }
+  resizeChart(width: number): void {
+    this.view = [width, 320]
+  }
 }
 

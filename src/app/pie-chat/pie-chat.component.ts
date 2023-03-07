@@ -11,54 +11,58 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PieChatComponent implements OnInit {
   public olympics$: Observable<Array<Olympic> | undefined | null> = of(null);
-	public resSafe!: any;
-	public sumByCountry!: any;
-	public sumMedals!: any;
-	public countrys!: any | undefined;
-	public datas: string[] = [];
-	public surveyData: string;
-	public totalParticipations: number = 0;
-  	public nbrJo:any = 0;
-	constructor(private olympicService: OlympicService,private route: ActivatedRoute,
+  public resSafe!: any;
+  public sumByCountry!: any;
+  public sumMedals!: any;
+  public countrys!: any | undefined;
+  public datas: string[] = [];
+  public surveyData: string;
+  public totalParticipations: number = 0;
+  public nbrJo: any = 0;
+  public view:any=[];
+
+  constructor(private olympicService: OlympicService, private route: ActivatedRoute,
     private router: Router,) { }
 
-	ngOnInit(): void {
-		this.olympics$ = this.olympicService.getOlympics();
+  ngOnInit(): void {
+    this.olympics$ = this.olympicService.getOlympics();
 
-		function add(accumulator: number, a: number) {
-			return accumulator + a;
-		}
-		this.olympics$.subscribe(res => {
-			if (!res) return;
-			this.resSafe = res;
-			this.countrys = this.resSafe.map((pays: any) => pays.country);
-			const medalsByCountry = res.map((pays: any) => pays.participations);
-			const nbr = medalsByCountry.forEach((participation) => participation.length);
-			const nbrMedalsByCountry = medalsByCountry.map(
-				(participation: any) => participation.map((medals: any) => medals.medalsCount)
-			);
+    function add(accumulator: number, a: number) {
+      return accumulator + a;
+    }
+    this.olympics$.subscribe(res => {
+      if (!res) return;
+      this.resSafe = res;
+      this.countrys = this.resSafe.map((pays: any) => pays.country);
+      const medalsByCountry = res.map((pays: any) => pays.participations);
+      const nbr = medalsByCountry.forEach((participation) => participation.length);
+      const nbrMedalsByCountry = medalsByCountry.map(
+        (participation: any) => participation.map((medals: any) => medals.medalsCount)
+      );
 
-			this.nbrJo = nbrMedalsByCountry.map((participation) => participation.length);
+      this.nbrJo = nbrMedalsByCountry.map((participation) => participation.length);
 
-			this.sumByCountry = nbrMedalsByCountry.map((sum) => sum.reduce(add, 0));
-			this.surveyData = this.countrys.map((country: string, i: number) => {
-				return {
-					'name': country,
-					'value': this.sumByCountry[i],
-				}
-			});
-console.log(this.surveyData);
-		})
-	}
-
+      this.sumByCountry = nbrMedalsByCountry.map((sum) => sum.reduce(add, 0));
+      this.surveyData = this.countrys.map((country: string, i: number) => {
+        return {
+          'name': country,
+          'value': this.sumByCountry[i],
+        }
+      });
+      console.log(this.surveyData);
+    })
+  }
+  resizeChart(width: number): void {
+    this.view = [width, 320]
+  }
   // When user clicks on a specific slice on the pie chart
-onPieSliceSelect(event:any){
-	this.countrys.map((country:string, key:number)=>{
-		if (country === event['name']) {
-			this.router.navigate(['/details/',key]);
-		}
-	})
+  onPieSliceSelect(event: any) {
+    this.countrys.map((country: string, key: number) => {
+      if (country === event['name']) {
+        this.router.navigate(['/details/', key]);
+      }
+    })
 
-}
+  }
 
 }

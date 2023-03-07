@@ -20,8 +20,11 @@
       </div>
     </div>
   </div>
-
-  <ngx-charts-pie-chart [results]="surveyData" [legend]="true" [legendTitle]="'Medals'" [view]="[1000,300]" (select)="onPieSliceSelect($event)"
-    [labels]="true">
-  </ngx-charts-pie-chart>
+  <div #ContainerRef class="card-body graph">
+    <ngx-charts-pie-chart (window:resize)="
+  resizeChart(ContainerRef.offsetWidth)
+" [results]="surveyData" [legend]="true" [legendTitle]="'Medals'" [view]="view" (select)="onPieSliceSelect($event)"
+      [labels]="true">
+    </ngx-charts-pie-chart>
+  </div>
 </div>

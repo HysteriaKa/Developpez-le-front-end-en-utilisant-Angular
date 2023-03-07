@@ -1,0 +1,25 @@
+
+.heightSize{
+  max-height: 100%;
+}
+.border {
+
+  border : 2px solid #26a69a;
+  vertical-align: middle;
+}
+.text-bold{
+  font-weight: bold;
+}
+
+.m-2 {
+  margin-top: 2rem;
+}
+.graph {
+  width: 100%;
+  height: calc(100% - 30px);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
