@@ -18,6 +18,17 @@ export class SingleBarChartComponent implements OnInit {
   public datas: any[];
   public years:number[]=[];
   public series: any[];
+public dataSet: any[];
+  view: any[] = [600, 400];
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Country';
+  showYAxisLabel = true;
+  yAxisLabel = 'Sales';
+  timeline = true;
   constructor(private olympicService: OlympicService,
     private route: ActivatedRoute,
     private router: Router,) { }
@@ -43,8 +54,18 @@ export class SingleBarChartComponent implements OnInit {
               'value': nbrMedals[i],
             }
           });
+this.dataSet = this.datas.map((value)=>{
+  if (this.olympic) {
+    return {
+
+      "name":this.olympic['country'],
+      "series":this.datas
+    }
+  }return this.dataSet;
+
+})
 // this.series.push(this.datas);
-          console.log(this.years,nbrMedals,this.datas);
+          // console.log(this.years,nbrMedals,this.datas);
 // for (let i = 0; i <this. years.length; i++) {
 //   const element = {name :this. years[i],value: nbrMedals[i]};
 //   this.datas.push(element);
@@ -55,7 +76,34 @@ export class SingleBarChartComponent implements OnInit {
     }
 
   }
-
+  // dataSet = [
+  //   {
+  //     "name": "Germany",
+  //     "series": [
+  //       {
+  //         "name": "2010",
+  //         "value": 7300000
+  //       },
+  //       {
+  //         "name": "2011",
+  //         "value": 8940000
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     "name": "USA",
+  //     "series": [
+  //       {
+  //         "name": "2010",
+  //         "value": 7870000
+  //       },
+  //       {
+  //         "name": "2011",
+  //         "value": 8270000
+  //       }
+  //     ]
+  //   }
+  // ];
 
 
 }

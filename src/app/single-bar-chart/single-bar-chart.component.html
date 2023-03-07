@@ -1,6 +1,9 @@
 <p>single-bar-chart works!</p>
 <p>{{olympic?.country}}</p>
-<ngx-charts-bar-vertical [results]="datas" [legend]="true" [view]="[1200,300]" [animations]="true">
+<div class="container">
+  <ngx-charts-line-chart [results]=dataSet [legend]="true" [view]="[1200,300]" [xAxis]="showXAxis"
+[yAxis]="showYAxis" [animations]="true" >
 
-</ngx-charts-bar-vertical>
+</ngx-charts-line-chart>
+</div>
 
