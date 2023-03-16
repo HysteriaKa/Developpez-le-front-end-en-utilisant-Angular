@@ -11,10 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PieChatComponent implements OnInit {
   public olympics$: Observable<Array<Olympic> | undefined | null> = of(null);
-  public resSafe!: any;
-  public sumByCountry!: any;
-  public sumMedals!: any;
-  public countrys!: any | undefined;
+  public resSafe: Array<Olympic>;
+  public sumByCountry: Array<number> = [];
+  public countrys: any | undefined;
   public datas: string[] = [];
   public surveyData: string;
   public totalParticipations: number = 0;
@@ -65,4 +64,6 @@ export class PieChatComponent implements OnInit {
 
   }
 
+
 }
+
