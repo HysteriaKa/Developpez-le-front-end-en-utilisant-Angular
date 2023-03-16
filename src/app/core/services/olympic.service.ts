@@ -10,7 +10,7 @@ import { Olympic } from '../models/Olympic';
 export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
   private olympics$ = new BehaviorSubject<Array<Olympic> | undefined | null>(null);
-private Olympic: Olympic |undefined
+  private Olympic: Olympic | undefined
   constructor(private http: HttpClient) { }
 
   loadInitialData() {
@@ -29,7 +29,8 @@ private Olympic: Olympic |undefined
   getOlympics() {
     return this.olympics$.asObservable();
   }
-  // getOlympicById(id: number): Observable<Olympic | undefined> {
-  // return this.getOlympics.map(filter((olympic)=>this.olympic.id == id));
-  // }
+    ngOnDestroy() {
+    this.olympics$.unsubscribe()
+  }
+
 }
