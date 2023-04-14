@@ -3,3 +3,5 @@ export class Olympic {
     country! : string;
     participations!: [];
 }
+
+export class Survey {name: string; value: number};

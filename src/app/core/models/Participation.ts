@@ -6,3 +6,5 @@ export class Participation {
   athleteCount!: number;
 
 }
+export class Datas {name: number; value: number};
+export class DataSet {name: string; series: Datas[]};

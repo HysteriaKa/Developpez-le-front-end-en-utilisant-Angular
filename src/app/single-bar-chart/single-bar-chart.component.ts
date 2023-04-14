@@ -3,24 +3,26 @@ import { Observable, of } from 'rxjs';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Participation } from 'src/app/core/models/Participation';
+import { Participation, Datas, DataSet } from 'src/app/core/models/Participation';
+
 @Component({
   selector: 'app-single-bar-chart',
   templateUrl: './single-bar-chart.component.html',
   styleUrls: ['./single-bar-chart.component.scss']
 })
+
 export class SingleBarChartComponent implements OnInit {
 
   public olympics$: Observable<Array<Olympic> | undefined | null> = of(null);
   public olympic: Olympic | undefined;
-  public resSafe: any;
+  public resSafe: Array<Olympic>;
   public participations: Participation[] | undefined;
-  public datas: any[];
+  public datas: Datas[];
   public years: number[] = [];
-  public dataSet: any[];
+  public dataSet: DataSet[];
   public sum: number = 0;
   public nbrAthletes: number = 0;
-  public view:any=[];
+  public view:[number, number] = [0,0];
 
   showXAxis = true;
   showYAxis = true;
@@ -47,10 +49,9 @@ export class SingleBarChartComponent implements OnInit {
         this.olympic = this.resSafe[nbrId];
         if (this.olympic) {
           this.participations = this.olympic['participations'];
-          console.log(this.participations);
           this.years = this.participations.map((an) => an.year);
           const nbrMedals = this.participations.map((nbr) => nbr.medalsCount);
-          const athletes = this.participations.map((nbr) => nbr.athleteCount);
+          const athletes : Array<number> = this.participations.map((nbr) => nbr.athleteCount);
 
           this.sum = this.arraySum(nbrMedals);
           this.nbrAthletes = this.arraySum(athletes);
@@ -69,7 +70,7 @@ export class SingleBarChartComponent implements OnInit {
 
   }
 
-  arraySum(array: any): number {
+  arraySum(array:Array<number>): number {
     let sum = 0;
     for (let i = 0; i < array.length; i++) {
       sum += array[i];
