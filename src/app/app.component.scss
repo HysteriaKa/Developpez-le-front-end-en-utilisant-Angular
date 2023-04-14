@@ -23,3 +23,38 @@
   align-items: center;
   box-sizing: border-box;
 }
+
+.d-flex {
+  display: flex;
+  overflow: hidden
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.logo{
+  max-width: 50%;
+}
+
+.logo img {
+  width: 224px;
+}
+
+.titre{
+  width: 50%;
+  text-align: -webkit-center;
+  text-align: center;
+  font-size:x-large;
+}
+
+@media (max-width: 390px) {
+  .logo img {
+    width: 193px;
+  }
+}
+@media (max-width: 480px) {
+  .logo img {
+    width: 200px;
+  }
+}

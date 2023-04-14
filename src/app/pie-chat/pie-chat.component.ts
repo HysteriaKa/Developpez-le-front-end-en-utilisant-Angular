@@ -20,7 +20,7 @@ export class PieChatComponent implements OnInit {
   public surveyData: Survey[];
   public totalParticipations: number = 0;
   public nbrJo: Array<number> = [0,0,0,0,0];
-  public view: [number, number] = [0,0];
+  public view: [number, number] = [window.innerWidth, window.innerHeight - 600];
   public nbrcountrys: number |null;
 
   constructor(private olympicService: OlympicService, private route: ActivatedRoute,
@@ -57,7 +57,7 @@ export class PieChatComponent implements OnInit {
   }
 
   resizeChart(width: number): void {
-    this.view = [width, 320]
+    this.view = [width - 10, 320]
   }
 
   // When user clicks on a specific slice on the pie chart

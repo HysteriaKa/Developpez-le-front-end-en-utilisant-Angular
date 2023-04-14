@@ -22,7 +22,7 @@ export class SingleBarChartComponent implements OnInit {
   public dataSet: DataSet[];
   public sum: number = 0;
   public nbrAthletes: number = 0;
-  public view:[number, number] = [0,0];
+  public view:[number, number] = [window.innerWidth, window.innerHeight - 600];
 
   showXAxis = true;
   showYAxis = true;
