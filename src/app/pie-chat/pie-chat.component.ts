@@ -32,10 +32,10 @@ export class PieChatComponent implements OnInit {
     function add(accumulator: number, a: number) {
       return accumulator + a;
     }
+
     this.olympics$.subscribe(res => {
       if (!res) return;
       this.resSafe = res;
-
       this.countrys = this.resSafe.map((pays: Olympic) => pays.country);
       this.nbrcountrys= this.countrys.length;
       const medalsByCountry = res.map((pays: Olympic) => pays.participations);
